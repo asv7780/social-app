@@ -4,8 +4,8 @@ import s from './ProfileInfo.module.css'
 const ProfileInfo = props => {
     return (
         <div>
-            <div><img
-                src="https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+            <div className={s.profile}><img
+                src="https://cdn.pixabay.com/photo/2018/08/14/13/23/ocean-3605547__340.jpg"
                 alt="BG-content"/></div>
             <div className={s.descriptionBlock}>ava + descr</div>
         </div>

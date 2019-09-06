@@ -1,19 +1,32 @@
 import React from "react";
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
+import {updateNewPostText} from "../../../redux/state";
 
 const MyPosts = (props) => {
 
   let postsElements = props.posts.map(p => <Post id={p.id} post={p.post} likesCount={p.likesCount} key={p.id}/>);
+  let newPostElement = React.createRef();
 
+  let addPost = () => {
+    let text = newPostElement.current.value;
+    props.addPost(text);
+
+  };
+
+  let onPostChange = () => {
+    let text = newPostElement.current.value;
+    props.updateNewPostText(text);
+  };
   return (
-    <div className={s.postsBlock}>My posts
+    <div className={s.postsBlock}>
+      <h3>My posts</h3>
       <div>
         <div>
-          <textarea name="post" id="" cols="30" rows="3"></textarea>
+          <textarea onChange={onPostChange} name="post" cols="30" rows="3" ref={newPostElement} value={props.newPostText}/>
         </div>
         <div>
-          <button>Add post</button>
+          <button onClick={addPost}>Add post</button>
         </div>
 
       </div>

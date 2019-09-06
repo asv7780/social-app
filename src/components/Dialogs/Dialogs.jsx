@@ -4,26 +4,14 @@ import DialogItem from './DialogItem/DialogItem'
 import Message from './Message/Message'
 
 const Dialogs = (props) => {
-  const dialogs = [
-    {id: 1, name: 'John'},
-    {id: 2, name: 'Mark'},
-    {id: 3, name: 'Joe'},
-    {id: 4, name: 'Mary'},
-    {id: 5, name: 'Kate'},
-    {id: 6, name: 'Lessy'}
-  ];
+  const dialogsElements = props.state.dialogs.map(d => <DialogItem name={d.name} userPhoto={d.userPhoto} id={d.id} key={d.id}/>);
+  const messagesElements = props.state.messages.map(m => <Message text={m.message} id={m.id} key={m.id}/>);
 
-  const messages = [
-    {id: 1, message: 'how do you do'},
-    {id: 2, message: 'z.dkbyu.dkytbzd.jk'},
-    {id: 3, message: 'hello'},
-    {id: 4, message: 'zdbyxdybny'},
-    {id: 5, message: 'ma name is mary'},
-    {id: 6, message: 'hi'}
-  ];
-
-  const dialogsElements = dialogs.map(d => <DialogItem name={d.name} id={d.id}/>)
-  const messagesElements = messages.map(m => <Message text={m.message} id={m.id}/>)
+  let newMessageElement = React.createRef();
+  let addMessage = () => {
+    let messageText = newMessageElement.current.value;
+    alert(messageText);
+  };
 
   return (
     <div className={s.dialogs}>
@@ -32,6 +20,12 @@ const Dialogs = (props) => {
       </div>
       <div className={s.messages}>
         {messagesElements}
+      </div>
+      <div>
+        <div>
+          <button onClick={addMessage}>Add message</button>
+        </div>
+        <textarea name="post" id="" cols="30" rows="3" ref={newMessageElement}></textarea>
       </div>
     </div>
   )
