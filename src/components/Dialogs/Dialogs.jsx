@@ -5,7 +5,7 @@ import Message from './Message/Message'
 import {sendMessageCreator, updateNewMessageTextCreator} from "../../redux/dialogs-reducer";
 
 const Dialogs = (props) => {
-  let state = props.store.getState().dialogsPage;
+  let state = props.dialogsPage;
   const dialogsElements = state.dialogs.map(d => <DialogItem name={d.name} userPhoto={d.userPhoto} id={d.id}
                                                                    key={d.id}/>);
   const messagesElements = state.messages.map(m => <Message text={m.message} id={m.id} key={m.id}/>);
@@ -13,11 +13,11 @@ const Dialogs = (props) => {
 
   let onNewMessageChange = (event) => {
     let msgText = event.target.value;
-    props.store.dispatch(updateNewMessageTextCreator(msgText));
+    props.updateNewMessageText(msgText);
   };
 
-  let sendMessage = () => {
-    props.store.dispatch(sendMessageCreator());
+  let onSendMessage = () => {
+    props.sendMessage();
   };
 
 
@@ -37,7 +37,7 @@ const Dialogs = (props) => {
             onChange={onNewMessageChange}></textarea>
         </div>
         <div>
-          <button onClick={sendMessage}>Add message</button>
+          <button onClick={onSendMessage}>Add message</button>
         </div>
       </div>
     </div>
