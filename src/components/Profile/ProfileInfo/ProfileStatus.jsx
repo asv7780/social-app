@@ -1,9 +1,7 @@
 import React from 'react';
-import s from './ProfileInfo.module.css'
 
 class ProfileStatus extends React.Component {
   //local state
-
   state = {
     editMode: false,
     status: this.props.status
@@ -34,7 +32,6 @@ class ProfileStatus extends React.Component {
   }
 
   render() {
-
     return (
       <div>
         {!this.state.editMode &&

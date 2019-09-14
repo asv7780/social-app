@@ -7,25 +7,27 @@ import {Textarea} from "../../common/FormControls/FormControls";
 
 const maxLength10 = maxLength(10);
 const minLength2 = minLength(2);
-const MyPosts = (props) => {
-  let postsElements = props.posts.map(p => <Post id={p.id} post={p.post} likesCount={p.likesCount} key={p.id}/>);
-  let newPostElement = React.createRef();
 
-  let onAddPost = (values) => {
-    props.addPost(values.newPostText);
-  };
+const MyPosts = React.memo( props => {
+    let postsElements = props.posts.map(p => <Post id={p.id} post={p.post} likesCount={p.likesCount}
+                                                   key={p.id}/>);
+    // let newPostElement = React.createRef();
 
-  return (
-    <div className={s.postsBlock}>
-      <h3>My posts</h3>
-      <AddNewPostFormRedux onSubmit={onAddPost}/>
+    let onAddPost = (values) => {
+        props.addPost(values.newPostText);
+    };
 
-      <div className={s.posts}>
-        {postsElements}
-      </div>
-    </div>
-  )
-};
+    return (
+        <div className={s.postsBlock}>
+            <h3>My posts</h3>
+            <AddNewPostFormRedux onSubmit={onAddPost}/>
+
+            <div className={s.posts}>
+                {postsElements}
+            </div>
+        </div>
+    )
+});
 
 const AddNewPostForm = (props) => {
   return (
