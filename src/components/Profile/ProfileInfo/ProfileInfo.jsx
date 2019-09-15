@@ -3,32 +3,17 @@ import s from './ProfileInfo.module.css'
 import ProfileStatus from "./ProfileStatus";
 import Preloader from "../../common/Preloader/Preloader";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
+import userLogo from "../../../assets/images/user-logo.png";
 
-const ProfileInfo = (props) => {
-  if (!props.profile) {
+const ProfileInfo = ({profile, status, updateStatus}) => {
+  if (!profile) {
     return <Preloader/>;
   }
     return (
         <div>
             <div className={s.descriptionBlock}>
-              <img src={props.profile.photos.small} alt="profile-img"/>
-              <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
-              {/*<div>*/}
-              {/* <div>*/}
-              {/*   <h4>About</h4>*/}
-              {/*   <p>{props.profile.aboutMe}</p>*/}
-              {/* </div>*/}
-              {/*  <div>*/}
-              {/*    <h4>Contacts</h4>*/}
-              {/*    <ul>*/}
-              {/*      <li><a href="#d">facebook</a></li>*/}
-              {/*      <li><a href="#d">vk</a></li>*/}
-              {/*      <li><a href="#d">twitter</a></li>*/}
-              {/*      <li><a href="#d">instagram</a></li>*/}
-              {/*        <li><a href="#d">github</a></li>*/}
-              {/*    </ul>*/}
-              {/*  </div>*/}
-              {/*</div>*/}
+              <img className={s.profileImg} src={profile.photos.small!= null ? profile.photos.small : userLogo} alt="profile-img"/>
+              <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
             </div>
         </div>
     );
